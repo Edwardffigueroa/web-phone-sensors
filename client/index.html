@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLIENT</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #data-container {
+      margin-top: 20px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Phone sensors</h1>
+  <button id="location-button">Activate location</button>
+  <button id="acceletometer-button">Activate Accelerometer</button>
+  <canvas id="motionCanvas" width="400" height="400"></canvas>
+  <div id="data"></div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="index.js"></script>
+  <script src="accelerometer-visualicer.js"></script>
+</body>
+
+</html>
