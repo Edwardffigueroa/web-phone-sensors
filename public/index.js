@@ -13,6 +13,11 @@ async function sendCurentGeolocation() {
     navigator.geolocation.watchPosition(function (position) {
       console.log("GEOLOCALIZATION", position);
       // socket.emit("user-location", position); // Sends a string message to the server
+      const dataDiv = document.getElementById("data");
+      dataDiv.innerHTML = `
+          <p>LOCATION</p>
+          <p>LAT: ${position?.coords?.latitude}, LONG: ${position?.coords?.longitude}
+        `;
     });
   } else {
     console.log("Geolocation is not supported by this browser.");
