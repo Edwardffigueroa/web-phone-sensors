@@ -1,7 +1,7 @@
 const canvas = document.getElementById("motionCanvas");
 const ctx = canvas.getContext("2d");
 
-function drawAxes() {
+export function drawAxes() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();
   ctx.moveTo(200, 0); // Y-axis
@@ -43,9 +43,12 @@ function drawRotationRate(rotationRate) {
   );
 }
 
-function handleMotionEvent(event) {
+export function handleMotionEvent(event) {
   const acceleration = event.accelerationIncludingGravity;
   const rotationRate = event.rotationRate;
+  console.log("ACCELERATION: ", acceleration);
+  console.log("ROTATION: ", rotationRate);
+  // EMIT EVENT TO SERVER WITH VALUES
 
   drawAxes();
   drawAcceleration(acceleration);
@@ -66,29 +69,4 @@ function handleMotionEvent(event) {
     `;
 }
 
-function initMotionEvent() {
-  if (window.DeviceMotionEvent) {
-    if (typeof DeviceMotionEvent.requestPermission === "function") {
-      DeviceMotionEvent.requestPermission()
-        .then((permissionState) => {
-          if (permissionState === "granted") {
-            window.addEventListener("devicemotion", handleMotionEvent);
-          } else {
-            alert("Permission to access device motion data denied.");
-          }
-        })
-        .catch(console.error);
-    } else {
-      window.addEventListener("devicemotion", handleMotionEvent);
-    }
-  } else {
-    console.log("DeviceMotionEvent is not supported by this browser.");
-  }
-}
-
 drawAxes(); // Initial draw
-
-// Request permission and initialize motion event on user interaction (e.g., button click)
-document
-  .getElementById("acceletometer-button")
-  .addEventListener("click", initMotionEvent);
