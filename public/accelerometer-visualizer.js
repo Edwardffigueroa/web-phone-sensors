@@ -1,3 +1,4 @@
+// let socket = io("https://jh66ms2f-5050.use2.devtunnels.ms", { path: "/real-time" });
 const canvas = document.getElementById("motionCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -48,7 +49,8 @@ export function handleMotionEvent(event) {
   const rotationRate = event.rotationRate;
   console.log("ACCELERATION: ", acceleration);
   console.log("ROTATION: ", rotationRate);
-  // EMIT EVENT TO SERVER WITH VALUES
+  // EMIT EVENT TO SERVER WITH VALUES -> consider using a debouncer to send that data to the server or just send after the condition
+  // socket.emit("acc", { acceleration, rotationRate });
 
   drawAxes();
   drawAcceleration(acceleration);

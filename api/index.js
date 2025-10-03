@@ -2,10 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
+const path = require("path");
 
 const app = express(); // Creates HTTP server
 app.use(express.json()); // utility to process JSON in requests
 app.use(cors()); // utility to allow clients to make requests from other hosts or ips
+app.use(express.static(path.join(__dirname, "../public"))); // Serve static files from public directory
 
 const httpServer = createServer(app); // Explicity creates an HTTP server from the Express app
 
@@ -41,6 +43,11 @@ io.on("connection", (socket) => {
 
   socket.on("user-location", (locationObj) => {
     console.log(locationObj);
+    // socket.broadcast.emit("chat-messages", message); // Broadcasts the message to all connected clients except the sender
+  });
+
+  socket.on("acc", (acc) => {
+    console.log(acc);
     // socket.broadcast.emit("chat-messages", message); // Broadcasts the message to all connected clients except the sender
   });
 });

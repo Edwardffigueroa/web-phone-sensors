@@ -1,4 +1,4 @@
-// let socket = io("http://172.20.10.2:5050", { path: "/real-time" });
+
 
 import { drawAxes, handleMotionEvent } from "./accelerometer-visualizer.js";
 
